@@ -1,7 +1,6 @@
 
 import Translate from "./components/Translate";
 import React, {  } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 const App = () => {
