@@ -3,14 +3,15 @@ import Translate from "./components/Translate";
 import React, {  } from "react";
 
 
+
 const App = () => {
   
 
   return (
     <div className="App">
       <div>
-      <nav class="navbar navbar-light p-3">
-        <span class="navbar-brand ml-5"><h3 className="text-secondary"><img height={25} src="google-logo.png"></img>  Translate</h3></span>
+      <nav class="navbar navbar-light p-3"> 
+        <a href="/" class="navbar-brand ml-5"><h3 className="text-secondary"><img alt="Google" height={25} src="google-logo.png"></img>  Translate</h3></a>
       </nav>
       </div>
       <div className="row" style={{position: "relative"}}>
@@ -26,6 +27,7 @@ const App = () => {
         <Translate />
       </div>
     </div>
+    
     </div>
   );
 }
