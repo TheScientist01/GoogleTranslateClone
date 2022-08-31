@@ -16,8 +16,10 @@ const Translate = () => {
     const detectLang=useSelector(state=>state.language.detectLang);
     const onC = (event) => {
         // setText(event.target.value);
-        dispatch(inputText(event.target.value));
+        dispatch(inputText(event.currentTarget.textContent));
     };
+
+    // document.getElementById("input").addEventListener("input",(e)=>console.log(e.currentTarget.textContent), false);
     
     const copyToClipboard=()=>{
         navigator.clipboard.writeText(translatedText);        
@@ -34,11 +36,11 @@ const Translate = () => {
             
             <div className={`row no-gutters ${isActive?"d-none":""}`} >
                 <div className="col-6 inp">
-                    <textarea onChange={(e) => onC(e)} style={{overflow:"auto", fontSize: "24px", outline: "none" }} className="p-4"></textarea>
+                    <div contentEditable onInput={(e)=>onC(e)} style={{ fontSize: "24px", outline: "none", marginBottom:"45px" }} className="p-4" id="input"></div>
                     <div className="m-4" id="suggestion"><i class="fa-solid fa-wand-magic-sparkles mx-3"></i>Translate from: <span onClick={() => dispatch(inputLang(detectLang))} id="detect">{detectLang.label}</span></div>
                     <div className="row m-4">
                         <button className="btn voice mr-3"><i className="fa-solid fa-microphone text-secondary"></i></button>
-                        <button className="btn voice"><i className='fas fa-volume-up text-secondary'></i></button>
+                        <button className={`btn voice ${text===""?"d-none":""}`}><i className='fas fa-volume-up text-secondary'></i></button>
                     </div>
                 </div>
                 <div className="col-6 out" style={{ borderRadius: "0 0 8px 0", background: "white" }}>

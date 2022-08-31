@@ -12,10 +12,11 @@ const Convert=({options})=>{
     const outLang=useSelector(state=>state.language.outLang);
     const output=useSelector(state=>state.text.outputText);
     useEffect(()=>{
+        
         const timer=setTimeout(()=>{
             setDebouncedText(text);
         },500);
-
+        
         return ()=>{clearTimeout(timer);};
     },[text,inLang,outLang]);
 
@@ -60,7 +61,7 @@ const Convert=({options})=>{
         doTranslation();
     },[debouncedText, inLang,outLang]);
 
-    if(outputText===""){
+    if(output===""){
         return(<div className="m-4 text-muted"><h2>Translate</h2></div>);
     }
     return(<div className="m-4" style={{ color: "black"}}><h2>{output}</h2></div>); 
