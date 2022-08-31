@@ -1,11 +1,16 @@
 import axios from "axios";
 import React,{useEffect, useState} from "react";
+import { useDispatch } from "react-redux/es/hooks/useDispatch";
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import { detectLang, outputText } from "../redux/actions";
 
-
-
-const Convert=({options,inLang, outLang,text, translatedText})=>{
-    const [result, setResult]=useState("");
+const Convert=({options})=>{
+    const dispatch=useDispatch();
+    const text=useSelector(state=>state.text.inputText);
     const [debouncedText, setDebouncedText]=useState(text);
+    const inLang=useSelector(state=>state.language.inLang);
+    const outLang=useSelector(state=>state.language.outLang);
+    const output=useSelector(state=>state.text.outputText);
     useEffect(()=>{
         const timer=setTimeout(()=>{
             setDebouncedText(text);
@@ -25,7 +30,11 @@ const Convert=({options,inLang, outLang,text, translatedText})=>{
             });
             if(inLang.value!==data.data.detections[0][0].language && debouncedText!==""){
                 document.getElementById("suggestion").style.display="block";
-                document.getElementById("detect").innerHTML=options.map(option=>{return (option.value===data.data.detections[0][0].language?option.label:"")}).filter((n)=>{return n!==","?n:""});
+                options.forEach(option => {
+                    if(option.value===data.data.detections[0][0].language){
+                        dispatch(detectLang(option));
+                    }
+                });
             }
             else{
                 document.getElementById("suggestion").style.display="none";
@@ -46,17 +55,15 @@ const Convert=({options,inLang, outLang,text, translatedText})=>{
                     key: "AIzaSyCHUCmpR7cT_yDFHC98CZJy2LTms-IwDlM"
                 }
             });
-            setResult(data.data.translations[0].translatedText);
+            dispatch(outputText(data.data.translations[0].translatedText));
         };
         doTranslation();
     },[debouncedText, inLang,outLang]);
-    translatedText(result);
 
-    if(result===""){
+    if(outputText===""){
         return(<div className="m-4 text-muted"><h2>Translate</h2></div>);
     }
-    // translatedText({result});
-    return(<div className="m-4" style={{ color: "black"}}><h2>{result}</h2></div>); 
+    return(<div className="m-4" style={{ color: "black"}}><h2>{output}</h2></div>); 
 
 }
 
