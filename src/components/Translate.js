@@ -44,6 +44,7 @@ const Translate = () => {
                     <div className="row m-4">
                         <button className="btn voice mr-3"><i className="fa-solid fa-microphone text-secondary"></i></button>
                         <button className={`btn voice ${text===""?"d-none":""}`}><i className='fas fa-volume-up text-secondary'></i></button>
+                        <button onClick={()=>{dispatch(inputText("")); document.getElementById("input").innerHTML=""}} style={{top:"15px", right:"10px", position:"absolute"}} className={`btn voice ${text===""?"d-none":""}`}><i style={{fontSize:"28px"}} class="fa-solid fa-xmark text-secondary"></i></button>
                     </div>
                 </div>
                 <div className="col-6 out" style={{ borderRadius: "0 0 8px 0", background: "white" }}>
