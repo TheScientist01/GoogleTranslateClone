@@ -19,6 +19,12 @@ export const outputLang=(outLang={label: "French", value: "fr"})=>{
     }
 }
 
+export const switchLang=()=>{
+    return{
+        type: "SWITCH",
+    }
+}
+
 export const dropdownActiveIn=()=>{
     return{
         type: "ACTIVATE_IN",

@@ -4,6 +4,7 @@ const textReducer=(state={inputText: "", outputText: ""}, action)=>{
             return {...state,inputText: action.payload.inputText};
         case "OUTPUT_TEXT":
             return  {...state,outputText: action.payload.outputText};
+        
         default:
             return state;
     }

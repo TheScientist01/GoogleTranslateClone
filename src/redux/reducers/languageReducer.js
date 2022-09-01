@@ -1,4 +1,7 @@
-const languageReducer = (state = { inLang: {value: "en", label: "English"}, outLang: {value: "fr", label: "French"}, detectLang: {value: "", label: ""} }, action) => {
+
+
+
+const languageReducer = (state = { inLang: {value: "en", label: "English"}, outLang: {value: "fr", label: "French"}, detectLang: {value: "", label: ""}}, action) => {
     switch (action.type) {
         case "INPUT_LANGUAGE":
             return {...state,inLang: action.payload.inLang};
@@ -7,8 +10,7 @@ const languageReducer = (state = { inLang: {value: "en", label: "English"}, outL
         case "OUTPUT_LANGUAGE":
             return {...state,outLang: action.payload.outLang};
         case "SWITCH":
-            const temp=state.inLang;
-            return {...state, inLang: state.outLang, outLang: temp};
+            return {...state, inLang: state.outLang, outLang: state.inLang};
         default:
             return state;
     }

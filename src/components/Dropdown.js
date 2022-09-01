@@ -1,7 +1,8 @@
-import React from "react";
-import { dropdownActiveIn, dropdownActiveOut, dropdownDeactive, inputLang, outputLang} from "../redux/actions";
+import React, {useState} from "react";
+import { dropdownActiveIn, dropdownActiveOut, dropdownDeactive, inputLang, outputLang, switchLang} from "../redux/actions";
 import { useSelector } from "react-redux/es/exports";
 import { useDispatch } from "react-redux/es/exports";
+import SearchBar from "./SearchBar";
 
 
 
@@ -35,10 +36,16 @@ const Dropdown = ({ options }) => {
     //     });
     // }, [])
 
+    const [list, setList]=useState([]);
 
-    const list = options.map((option) => {
-        return (<div key={option.value} onClick={() => {onChoose(option)}} className="col-2 py-3 list-element">{option.label}</div>)
-    });
+    const createList=(term="")=>{
+        setList(options.map((option) => {
+           if(option.label.toUpperCase().includes(term.toUpperCase())||option.value.toUpperCase().includes(term.toUpperCase())){
+                return <div key={option.value} onClick={() => {onChoose(option)}} className="col-2 py-3 list-element">{option.label}</div>
+           } 
+        }));
+        // setList(term);
+    }
 
     return (
         <div>
@@ -49,7 +56,7 @@ const Dropdown = ({ options }) => {
                     <button onClick={() => { isActive ? dispatch(dropdownDeactive()) : dispatch(dropdownActiveIn()) }} className="btn btn-lg gray-button ml-5"><i className="fa-solid fa-chevron-down text-secondary"></i></button>
                 </div>
             </div>
-            <button className="btn btn-lg switch-button"><i className="fa-solid fa-right-left text-secondary"></i></button>
+            <button onClick={()=>dispatch(switchLang(inLang,outLang))} className="btn btn-lg switch-button"><i className="fa-solid fa-right-left text-secondary"></i></button>
             <div className="col-6" style={{ borderRadius: "inherit" }}>
                 <div className={`ui dropdown bg-white col-12 ${isActive ? "active" : ""}`}>
                     <div className="text text-muted p-3 ml-3 selected-lang" style={{ fontWeight: "500", fontSize: "19px" }}>{outLang.label}</div>
@@ -58,11 +65,11 @@ const Dropdown = ({ options }) => {
             </div>
         </div>
         <div style={{ width: "92.5vw" }} className={`row no-gutters ${isActive ? '' : 'd-none'}`}>
-                        <div className="col-12 py-2" style={{ background: "white", border: "1px 0 1px 0 solid #dddddd" }}>
-                            <button onClick={() => dispatch(dropdownDeactive())} className="btn"><i className="fa-solid fa-arrow-left"></i></button>
-                            <input type={"text"} style={{ outline: "none", border: "none", fontSize: "18px", width: "90%" }} className="ml-4" placeholder="Seach languages"></input>
+                        <div className="col-12" style={{ background: "white", border: "1px solid #dddddd", padding: "10px 0" }}>
+                            <button onClick={() => dispatch(dropdownDeactive())} className="btn btn-lg"><i className="fa-solid fa-arrow-left text-secondary" style={{fontSize:"20px"}}></i></button>
+                            <SearchBar createList={createList} />
                         </div>
-                        <div className="row m-0 bg-white">{list}</div>
+                        <div className="row col-12 m-0 bg-white">{list}</div>
             </div>
         </div>
     );

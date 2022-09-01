@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { inputText, inputLang, detectLang } from "../redux/actions";
 import Convert from "./Convert";
 import Dropdown from "./Dropdown";
@@ -8,12 +8,11 @@ const options = [ { label: "Afrikaans", value: "af" }, { label: "Albanian", valu
 
 const Translate = () => {
     const dispatch=useDispatch();
-    // const inLang=useSelector(state=>state.language.inLang);
-    // const outLang=useSelector(state=>state.language.outLang);
     const text=useSelector(state=>state.text.inputText);
     const translatedText=useSelector(state=>state.text.outputText);
     const isActive=useSelector(state=>state.dropdown.isActive);
     const detectLang=useSelector(state=>state.language.detectLang);
+    const [copiedElement, setCopiedElement]=useState("");
     const onC = (event) => {
         // setText(event.target.value);
         dispatch(inputText(event.currentTarget.textContent));
@@ -23,7 +22,11 @@ const Translate = () => {
     
     const copyToClipboard=()=>{
         navigator.clipboard.writeText(translatedText);        
+        setCopiedElement(translatedText);
+
+
     }
+
 
     return (
         <div style={{ boxShadow: "0 0 3px 2px rgb(0 0 0 / 10%)", borderRadius: "10px" }}>
@@ -37,7 +40,7 @@ const Translate = () => {
             <div className={`row no-gutters ${isActive?"d-none":""}`} >
                 <div className="col-6 inp">
                     <div contentEditable onInput={(e)=>onC(e)} style={{ fontSize: "24px", outline: "none", marginBottom:"45px" }} className="p-4" id="input"></div>
-                    <div className="m-4" id="suggestion"><i class="fa-solid fa-wand-magic-sparkles mx-3"></i>Translate from: <span onClick={() => dispatch(inputLang(detectLang))} id="detect">{detectLang.label}</span></div>
+                    <div className="m-4" id="suggestion"><i class="fa-solid fa-wand-magic-sparkles mx-3 d-none"></i>Translate from: <span onClick={() => dispatch(inputLang(detectLang))} id="detect">{detectLang.label}</span></div>
                     <div className="row m-4">
                         <button className="btn voice mr-3"><i className="fa-solid fa-microphone text-secondary"></i></button>
                         <button className={`btn voice ${text===""?"d-none":""}`}><i className='fas fa-volume-up text-secondary'></i></button>
@@ -52,7 +55,7 @@ const Translate = () => {
                     </div>
                 </div>
             </div>
-            {/* <div id="message" className="p-4"></div> */}
+            
         </div>
 
     )

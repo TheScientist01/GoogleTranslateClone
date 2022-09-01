@@ -14,7 +14,6 @@
 
 #message {
     position: absolute;
-    bottom: 0;
     background: rgb(45, 42, 42);
     color: white;
 }
@@ -114,8 +113,8 @@ select::-ms-expand {
     font-size: 17px;
 }
 
-.gray-button:hover, .switch-button:hover {
-    background: #f5f5f5;
+.gray-button:hover, .switch-button:hover, .btn:hover {
+    background: #f5f5f5!important;
 }
 
 .switch-button {
