@@ -132,3 +132,12 @@ select::-ms-expand {
     outline: none!important;
     box-shadow: none !important;
 }
+
+.translate-bt{
+    display: flex;
+    justify-content: space-around;
+}
+
+.bg-darker button:hover{
+    background: #e3e2e2!important;
+}
