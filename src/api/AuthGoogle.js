@@ -15,7 +15,7 @@ class AuthGoogle extends React.Component{
                     this.auth=window.gapi.auth2.getAuthInstance();
                     this.onAuthChange(this.auth.isSignedIn.get());
                     this.auth.isSignedIn.listen(this.onAuthChange);
-                    // console.log(this.auth);
+                    
                 });
             }
         )
@@ -30,10 +30,34 @@ class AuthGoogle extends React.Component{
         }
     }
 
+    state={isClicked: false};
+
     renderAuthButton(){
         if(this.props.isSignedIn){
             // return <button onClick={()=>this.auth.signOut()} className="btn btn-primary mr-2" style={{fonSize: "small"}}>{this.props.user.name+" "+this.props.user.surname}</button>
-            return <div className="pp mr-3"><img onClick={()=>this.auth.signOut()} src={this.props.user.pp}></img></div>
+            return(
+            <div>
+            <div className="pp mr-3"><img onClick={()=>{this.setState({isClicked:this.state.isClicked ? false : true})}} src={this.props.user.pp}></img></div>
+            <div className={`profile-info ${!this.state.isClicked ? "d-none" : ""}`}>
+                <ul className="list-group">
+                    <div className="pp-big mx-auto mt-4"><img src={this.props .user.pp}></img></div>
+                    <li className="mt-2"><h4>{this.props.user.name} {this.props.user.surname}</h4></li>
+                    <li >{this.props.user.mail}</li>
+                    <li className="manage my-4"><button className="btn px-4">Manage Google Account</button></li>
+                    <li className="add-account mb-4"><button className="btn btn-lg py-3">Add another account</button></li>
+                    <li className="logout"><button onClick={()=>{this.auth.signOut();this.setState({isClicked:false});}} className="btn btn-lg">Logout</button></li>
+                    <hr></hr>
+                    <li>
+                        <div className="row terms">
+                            <button className="btn">Privacy Policy</button>
+                            <button className="btn" >&middot;</button>
+                            <button className="btn">Service Terms</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            </div>
+            )
         }
         else{
 

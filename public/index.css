@@ -143,6 +143,21 @@ select::-ms-expand {
     background: #e3e2e2!important;
 }
 
+.pp-big{
+    /* margin: auto; */
+    border-radius: 50%;
+    justify-content: center;
+}
+
+.pp-big img{
+    display: block;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 2px solid #f5f5f5;
+}
+
+
 .pp, .berry{
     background-color: white;
     border-radius: 50%!important;
@@ -199,13 +214,66 @@ select::-ms-expand {
     background: #f5f5f5;
 }
 
+.profile-info{
+    position: absolute;
+    width: 400px;
+    height: 450px;
+    background-color: white;
+    /* border: 1px solid black; */
+    border-radius: 10px;
+    box-shadow: 0 0 7px rgb(176, 175, 175);
+    top: 70px;
+    right: 10px;
+    z-index: 100;
+}
+
+.profile-info ul li{
+    list-style: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.add-account{
+    width: 100%;
+}
+
+.add-account button{
+    width: 100%;
+    border-top: 1px solid #cfcdcd;
+    border-bottom: 1px solid #cfcdcd;
+    border-radius: 0;
+}
+
+.add-account:hover, .manage:hover, .terms button:hover{
+    background: #f5f5f5;
+}
+
+.manage{
+    border-radius: 20px;
+    border: 1px solid #cfcdcd;
+}
+
+.manage button{
+    font-size: 17px;
+}
+
+.logout{
+    border: 1px solid #cfcdcd;
+    border-radius: 5px;
+}
+
+.logout:hover{
+    background-color: #f5f5f5;
+}
+
+.terms button{
+    margin: 5px;
+    padding: 2px 5px!important;
+}
+
 
 @keyframes sidebar {
     from {left: -310px;}
     to {left: 0;}
 }
 
-/* @keyframes sidebarClose {
-    from {left: 0;}
-    to {left: 310px;}
-} */
