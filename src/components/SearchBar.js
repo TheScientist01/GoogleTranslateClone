@@ -1,11 +1,8 @@
 
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux/es/exports";
 
 
 const SearchBar = ({createList}) => {
-
-    const isActive = useSelector(state => state.dropdown.isActive);
 
     useEffect(() => {
         createList("");
@@ -14,7 +11,6 @@ const SearchBar = ({createList}) => {
     const onC = (event) => {
         var term = event.target.value;
         createList(term);
-        console.log(event.target.value);
     }
 
     return <input onChange={(e) => onC(e)} type={"text"} style={{ outline: "none", border: "none", fontSize: "17px", width: "90%" }} className="ml-4" placeholder="Seach languages"></input>

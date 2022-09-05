@@ -4,8 +4,6 @@ import { useSelector } from "react-redux/es/exports";
 import { useDispatch } from "react-redux/es/exports";
 import SearchBar from "./SearchBar";
 
-
-
 const Dropdown = ({ options }) => {
     const dispatch = useDispatch();
     const isActive = useSelector(state => state.dropdown.isActive);
@@ -24,18 +22,6 @@ const Dropdown = ({ options }) => {
         dispatch(dropdownDeactive());          
     }
 
-
-    // useEffect(() => {
-    //     document.body.addEventListener('click', (event) => {
-    //         if (ref.current.contains(event.target)) {
-    //             return;
-    //         }
-    //         else {
-    //             // dispatch(dropdownDeactive());
-    //         }
-    //     });
-    // }, [])
-
     const [list, setList]=useState([]);
 
     const createList=(term="")=>{
@@ -44,7 +30,6 @@ const Dropdown = ({ options }) => {
                 return <div key={option.value} onClick={() => {onChoose(option)}} className="col-2 py-3 list-element">{option.label}</div>
            } 
         }));
-        // setList(term);
     }
 
     return (
@@ -70,6 +55,7 @@ const Dropdown = ({ options }) => {
                             <SearchBar createList={createList} />
                         </div>
                         <div className="row col-12 m-0 bg-white">{list}</div>
+                        {/* {<div className=";s"></div>} */}
             </div>
         </div>
     );

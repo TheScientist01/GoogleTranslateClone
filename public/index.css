@@ -7,9 +7,10 @@
     font-family: 'Roboto', sans-serif;
 }
 
-.body {
+body {
     position: relative;
     height: 100vh;
+    overflow-y: scroll;
 }
 
 #message {
@@ -113,7 +114,7 @@ select::-ms-expand {
     font-size: 17px;
 }
 
-.gray-button:hover, .switch-button:hover, .btn:hover {
+.gray-button:hover, .switch-button:hover {
     background: #f5f5f5!important;
 }
 
@@ -141,3 +142,70 @@ select::-ms-expand {
 .bg-darker button:hover{
     background: #e3e2e2!important;
 }
+
+.pp, .berry{
+    background-color: white;
+    border-radius: 50%!important;
+    width: 45px;
+    height: 45px;
+    position: relative;
+}
+
+.pp img{
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.pp:hover, .berry:hover{    
+    background: #f5f5f5;
+}
+
+#sidebar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 310px;
+    height: 100vh;
+    background-color: white;
+    box-shadow: 1px 1px 15px rgb(160, 160, 160);
+    z-index: 100;
+    animation: sidebar 0.3s ease;
+}
+
+#sidebar ul{
+    width: 100%;
+}
+
+#sidebar ul li{
+    cursor: pointer;
+    position: relative;
+    height: 50px;
+}
+
+#sidebar ul li a{
+    float: left;
+    margin-left: 50px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+#sidebar ul li:hover{
+    background: #f5f5f5;
+}
+
+
+@keyframes sidebar {
+    from {left: -310px;}
+    to {left: 0;}
+}
+
+/* @keyframes sidebarClose {
+    from {left: 0;}
+    to {left: 310px;}
+} */
