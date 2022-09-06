@@ -37,14 +37,14 @@ const Dropdown = ({ options }) => {
         <div className="row no-gutters" style={{ borderRadius: "10px 10px 0 0", position: "relative" }}>
             <div className="col-6" style={{ borderRadius: "inherit" }}>
                 <div className={`ui dropdown bg-white col-12 ${isActive ? "active" : ""}`}>
-                    <div className="text text-muted py-3 px-3 selected-lang" style={{ fontWeight: "500", fontSize: "19px" }}>{inLang.label}</div>
+                    <div className="text py-3 px-3 selected-lang" style={{ fontWeight: "500", fontSize: "19px" }}>{inLang.label}</div>
                     <button onClick={() => { isActive ? dispatch(dropdownDeactive()) : dispatch(dropdownActiveIn()) }} className="btn btn-lg gray-button ml-5"><i className="fa-solid fa-chevron-down text-secondary"></i></button>
                 </div>
             </div>
             <button onClick={()=>dispatch(switchLang(inLang,outLang))} className="btn btn-lg switch-button"><i className="fa-solid fa-right-left text-secondary"></i></button>
             <div className="col-6" style={{ borderRadius: "inherit" }}>
                 <div className={`ui dropdown bg-white col-12 ${isActive ? "active" : ""}`}>
-                    <div className="text text-muted p-3 ml-3 selected-lang" style={{ fontWeight: "500", fontSize: "19px" }}>{outLang.label}</div>
+                    <div className="text  p-3 ml-3 selected-lang" style={{ fontWeight: "500", fontSize: "19px" }}>{outLang.label}</div>
                     <button onClick={() => { isActive ? dispatch(dropdownDeactive()) : dispatch(dropdownActiveOut()) }} className="btn btn-lg gray-button ml-5"><i className="fa-solid fa-chevron-down text-secondary"></i></button>
                 </div>
             </div>
@@ -55,7 +55,6 @@ const Dropdown = ({ options }) => {
                             <SearchBar createList={createList} />
                         </div>
                         <div className="row col-12 m-0 bg-white">{list}</div>
-                        {/* {<div className=";s"></div>} */}
             </div>
         </div>
     );
