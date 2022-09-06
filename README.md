@@ -1,10 +1,10 @@
 Firstly, you should install node modules by using this code:
 
-~npm i
+>npm i
 
 After that, for starting the localhost you need to run this code on terminal:
 
-~npm start
+>npm start
 
 When the code compiled successfully, you could access the project on the browser using this link:
 
