@@ -1,3 +1,13 @@
+# Google Translate Clone
+
+**Used in this project:** <br>
+-React js <br>
+-Redux <br>
+-Html/Css/Bootstrap <br>
+-Google Translate API <br>
+-OAuth API <br>
+-Font Awesome <br>
+
 Firstly, you should install node modules by using this code:
 
 >npm i
