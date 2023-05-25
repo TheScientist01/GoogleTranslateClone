@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { inputText, inputLang, dropdownActiveIn, dropdownDeactive } from "../redux/actions";
+import { inputText, inputLang, dropdownActiveIn, dropdownDeactive, outputLang } from "../redux/actions";
 import Convert from "./Convert";
 import Dropdown from "./Dropdown";
 import { useSelector } from "react-redux/es/hooks/useSelector";
@@ -53,11 +53,11 @@ const Translate = () => {
             <div className={`row no-gutters ${isActive ? "d-none" : ""}`} >
                 <div className="col-6 inp">
                     <div contentEditable={count>5000?false : true} onInput={(e) => {onC(e); setCount(e.currentTarget.textContent.length)} } style={{ fontSize: "24px", outline: "none", marginBottom: "45px" }} className="p-4" id="input"></div>
-                    <div className="m-4" id="suggestion"><i class="fa-solid fa-wand-magic-sparkles mx-3 d-none"></i>Translate from: <span onClick={() => dispatch(inputLang(detectLang))} id="detect">{detectLang.label}</span></div>
+                    <div className="m-4" id="suggestion"><i className="fa-solid fa-wand-magic-sparkles mx-3 d-none"></i>Translate from: <span onClick={() => {dispatch(outputLang(inLang)); dispatch(inputLang(detectLang))}} id="detect">{detectLang.label}</span></div>
                     <div className="row m-4">
                         <button className="btn voice mr-3"><i className="fa-solid fa-microphone text-secondary"></i></button>
                         <button onClick={() => { speak.text = text; speak.lang = inLang.value; window.speechSynthesis.speak(speak) }} className={`btn voice ${text === "" ? "d-none" : ""}`}><i className='fas fa-volume-up text-secondary'></i></button>
-                        <button onClick={() => { dispatch(inputText("")); document.getElementById("input").innerHTML = ""; setCount(0) }} style={{ top: "15px", right: "10px", position: "absolute" }} className={`btn voice ${text === "" ? "d-none" : ""}`}><i style={{ fontSize: "28px" }} class="fa-solid fa-xmark text-secondary"></i></button>
+                        <button onClick={() => { dispatch(inputText("")); document.getElementById("input").innerHTML = ""; setCount(0) }} style={{ top: "15px", right: "10px", position: "absolute" }} className={`btn voice ${text === "" ? "d-none" : ""}`}><i style={{ fontSize: "28px" }} className="fa-solid fa-xmark text-secondary"></i></button>
                     </div>
                     <div className="text-muted m-4" style={{position: "absolute", bottom: "1px", right: 0}}>{`${count} / 5.000`}</div>
                 </div>
